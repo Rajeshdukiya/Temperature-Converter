@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Temperature Converter</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+      <p>Enter the temperature in Celsius or Fahrenheit:</p>
+      <input type="number" id="temperature">
+      <input type="radio" name="type" id="celsius" value="celsius" checked>
+      <label for="celsius">Celsius</label>
+      <input type="radio" name="type" id="fahrenheit" value="fahrenheit">
+      <label for="fahrenheit">Fahrenheit</label><br/>
+      <button onclick="convertTemperature()">Convert</button>
+      <p id="result"></p>
+      <h1>Temperature Converter</h1>
+    <script>
+      function convertTemperature() {
+        const temperatureInput = document.getElementById("temperature");
+        const temperature = parseFloat(temperatureInput.value);
+        const celsiusRadio = document.getElementById("celsius");
+        const type = celsiusRadio.checked ? "celsius" : "fahrenheit";
+        const resultElement = document.getElementById("result");
+        let convertedTemperature;
+        if (type === "celsius") {
+          convertedTemperature = temperature * 9/5 + 32;
+          resultElement.innerHTML = `${temperature}&deg; Celsius is ${convertedTemperature.toFixed(2)}&deg; Fahrenheit`;
+        } else {
+          convertedTemperature = (temperature - 32) * 5/9;
+          resultElement.innerHTML = `${temperature}&deg; Fahrenheit is ${convertedTemperature.toFixed(2)}&deg; Celsius`;
+        }
+        temperatureInput.value = "";
+      }
+    </script>
+  </body>
+</html>
